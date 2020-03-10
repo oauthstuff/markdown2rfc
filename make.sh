@@ -1,8 +1,10 @@
 #!/bin/bash
 
-FILENAME=`grep seriesInfo main.md -A 10 | grep value -m 1 | cut -d'"' -f2`
+FILENAME=`echo $1 | cut -f1 -d'.'`
+OUTFILENAME=`grep -m1 value $1 | cut -d'"' -f2`
 
-mmark -2 main.md > $FILENAME.xml
-`which xml2rfc` --legacy --html $FILENAME.xml
-`which xml2rfc` --legacy --text $FILENAME.xml
+mmark $FILENAME.md > $OUTFILENAME.xml
 
+`which xml2rfc` --html $OUTFILENAME.xml 
+
+`which xml2rfc` --text $OUTFILENAME.xml

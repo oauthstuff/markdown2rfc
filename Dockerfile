@@ -1,4 +1,4 @@
-FROM python:3-slim-buster
+FROM python:2-slim-buster
 
 RUN apt update && apt install -y wget
 RUN pip install xml2rfc
