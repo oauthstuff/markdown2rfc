@@ -8,12 +8,8 @@ then
     exit -1
 fi
 
+FILENAME=`grep -m1 value "$1" | cut -d'"' -f2`
 
-FILENAME=`echo $1 | cut -f1 -d'.'`
-OUTFILENAME=`grep -m1 value $1 | cut -d'"' -f2`
+mmark "$1" > "$FILENAME".xml
 
-mmark $FILENAME.md > $OUTFILENAME.xml
-
-`which xml2rfc` --html $OUTFILENAME.xml 
-
-`which xml2rfc` --text $OUTFILENAME.xml
+`which xml2rfc` --html "$FILENAME".xml

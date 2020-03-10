@@ -1,6 +1,6 @@
-FROM python:2-slim-buster
+FROM python:3-slim-buster
 
-RUN apt update && apt install -y wget
+RUN apt-get update && apt-get install -y wget
 RUN pip install xml2rfc
 
 WORKDIR /usr/local/bin
