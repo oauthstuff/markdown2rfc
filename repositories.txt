@@ -1,0 +1,4 @@
+https://danielfyes@bitbucket.org/openid/ekyc-ida.git    openid-connect-4-identity-assurance.md
+https://danielfyes@bitbucket.org/openid/fapi.git        FAPI_2_0_*.md  Financial_API_Grant_Management.md
+https://github.com/oauthstuff/draft-ietf-oauth-security-topics.git      main.md
+https://github.com/oauthstuff/draft-oauth-par.git                       main.md
