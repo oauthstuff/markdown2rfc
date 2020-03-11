@@ -36,7 +36,7 @@ while read repository fileglobs; do
     do
         echo "> on branch $ref"
         git -C "$gitdir" checkout --quiet "$ref"
-        htmloutputdir="$outdirbase"/"${ref#origin/}"
+        htmloutputdir=$(realpath "$outdirbase"/"${ref#origin/}")
         errordir="$htmloutputdir"/errors
         mkdir -p "$htmloutputdir"
         mkdir -p "$errordir"
@@ -52,7 +52,7 @@ while read repository fileglobs; do
                 echo "> making $file"
                 errorfile="$errordir"/$(basename -- "$file").txt
                 rm "$errordir" 2> /dev/null || true
-                ./make.sh "$file" "$htmloutputdir" 2> "$errorfile" || echo "> error processing $file, see $errorfile"
+                docker run -v "$gitdir":/input -v "$htmloutputdir":/output danielfett/markdown2rfc /input/$(basename "$file") /output 2> "$errorfile" || echo "> error processing $file, see $errorfile"
             done
             fi
         done
