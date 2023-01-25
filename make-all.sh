@@ -9,6 +9,9 @@ else
     OUTDIR="$1"
 fi
 TMPDIR='/tmp/makedown2rfc-make-all-git'
+DOCKER_IMAGE=danielfett/markdown2rfc
+
+docker pull $DOCKER_IMAGE
 
 while read repository fileglobs; do
     basename=$(basename -- "$repository")
@@ -52,7 +55,7 @@ while read repository fileglobs; do
                 echo "> making $file"
                 errorfile="$errordir"/$(basename -- "$file").txt
                 rm "$errordir" 2> /dev/null || true
-                docker run -v "$gitdir":/input -v "$htmloutputdir":/output danielfett/markdown2rfc /input/$(basename "$file") /output 2> "$errorfile" || echo "> error processing $file, see $errorfile"
+                docker run -v "$gitdir":/input -v "$htmloutputdir":/output $DOCKER_IMAGE /input/$(basename "$file") /output 2> "$errorfile" || echo "> error processing $file, see $errorfile"
             done
             fi
         done
