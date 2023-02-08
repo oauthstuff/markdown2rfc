@@ -5,7 +5,7 @@ RUN pip install xml2rfc
 
 WORKDIR /usr/local/bin
 
-RUN wget https://github.com/mmarkdown/mmark/releases/download/v2.2.30/mmark_2.2.30_linux_amd64.tgz -O/tmp/mmark.tgz \
+RUN wget https://github.com/mmarkdown/mmark/releases/download/v2.2.31/mmark_2.2.31_linux_amd64.tgz -O/tmp/mmark.tgz \
    && tar xzf /tmp/mmark.tgz
 
 COPY make.sh /usr/local/bin/make.sh
